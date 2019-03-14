@@ -32,10 +32,11 @@ SELECT
 FROM Employees
 GROUP BY City
 --8--
-SELECT City, AVG(YEAR(GETDATE()) - YEAR(BirthDate)) AS Age 
+SELECT FirstName, LastName, 
+	   FLOOR (DATEDIFF(DAY, BirthDate , GETDATE())/365.25) AS Age
 FROM Employees
-GROUP BY City
-HAVING (AVG(YEAR(GETDATE()) - YEAR(BirthDate))>60)
+WHERE FLOOR(DATEDIFF(DAY, BirthDate , GETDATE())/365.25) > 55
+ORDER BY LastName
 --9--
 SELECT 
 	FirstName AS NAME,
